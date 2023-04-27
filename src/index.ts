@@ -16,7 +16,7 @@ if ('serviceWorker' in navigator) {
       }
 
       if (process.env.DERIV_WS_URL) {
-        send('setWebsocketUrl', process.env.DERIV_WS_URL);
+        eventEmitter.setWebsocketUrl(process.env.DERIV_WS_URL);
       }
 
       if (localStorage.getItem('access_token')) {
