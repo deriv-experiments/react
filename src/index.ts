@@ -3,6 +3,7 @@ import deepEqual from 'deep-equal';
 import { startOAuthFlow } from './auth.ts';
 export * from './hooks/index.ts';
 
+let websocketUrl;
 const eventEmitter = new EventEmitter();
 
 if ('serviceWorker' in navigator) {
@@ -56,7 +57,14 @@ function send (...args) {
 }
 
 eventEmitter.login = () => {
-  startOAuthFlow();
+  if (!websocketUrl) {
+    return;
+  }
+
+  const url = new URL(websocketUrl);
+  startOAuthFlow(
+    url.searchParams.get('app_id')
+  );
 }
 
 eventEmitter.subscribe = (message, callback) => {
@@ -73,6 +81,7 @@ eventEmitter.subscribe = (message, callback) => {
 eventEmitter.send = send;
 
 eventEmitter.setWebsocketUrl = (url) => {
+  websocketUrl = url;
   send('setWebsocketUrl', url);
 }
 

@@ -6,7 +6,7 @@ let lastMessageCache = {};
 let websocketUrl;
 let authorize;
 let connection;
-console.log(1234);
+
 const wsLog = [];
 const wsPush = (type, message) => {
   wsLog.push([type, message]);
