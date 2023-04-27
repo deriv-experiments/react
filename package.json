@@ -26,6 +26,10 @@
     "name": "Mark Wylde",
     "url": "https://github.com/markwylde-deriv"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deriv-experiments/react.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "chokidar": "^3.5.3",
