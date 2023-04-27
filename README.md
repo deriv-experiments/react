@@ -16,6 +16,14 @@ To install the library, you can use npm:
 npm install @deriv-experiments/react
 ```
 
+### Environment Variable
+
+Once you have registered your app, ensure you set the environment variable:
+
+```bash
+export DERIV_WS_URL="wss://ws.binaryws.com/websockets/v3?app_id=1089"
+```
+
 ## Usage
 
 The library provides a set of hooks that make it easy to access information from the Deriv platform:
