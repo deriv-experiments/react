@@ -1,0 +1,30 @@
+{
+  "name": "@deriv-experiments/react",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A React library for integrating with Deriv's platform.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "deriv"
+  ],
+  "author": {
+    "email": "mark.wylde@deriv.com",
+    "name": "Mark Wylde",
+    "url": "https://github.com/markwylde-deriv"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "debounce": "^1.2.1",
+    "esbuild": "^0.17.17"
+  },
+  "dependencies": {
+    "deep-equal": "^2.2.0",
+    "events": "^3.3.0"
+  }
+}
