@@ -3,9 +3,10 @@ let data = [];
 let sendQueue = [];
 let lastMessageCache = {};
 
+let websocketUrl;
 let authorize;
 let connection;
-
+console.log(1234);
 const wsLog = [];
 const wsPush = (type, message) => {
   wsLog.push([type, message]);
@@ -13,12 +14,18 @@ const wsPush = (type, message) => {
 }
 
 function setupWebSocket () {
-  if (connection?.readyState === WebSocket.OPEN) {
+  if (!websocketUrl) {
     return;
   }
 
+  if (connection?.readyState === WebSocket.OPEN && websocketUrl === connection.url) {
+    return;
+  }
+
+  connection?.close();
+
   console.log('connecting to websocket');
-  connection = new WebSocket(process.env.DERIV_WS_URL);
+  connection = new WebSocket(websocketUrl);
 
   connection.addEventListener('open', handleOpen);
 
@@ -48,7 +55,7 @@ function setupWebSocket () {
 
 setupWebSocket();
 
-if (connection.readyState === WebSocket.OPEN) {
+if (connection?.readyState === WebSocket.OPEN) {
   handleOpen();
 }
 
@@ -115,6 +122,12 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('message', function (event) {
+  if (event.data[0] === 'setWebsocketUrl') {
+    websocketUrl = event.data[1];
+    setupWebSocket();
+    return;
+  }
+
   if (event.data[0] === 'debug') {
     postToAll('debug', wsLog);
     return;

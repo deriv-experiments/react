@@ -14,6 +14,10 @@ if ('serviceWorker' in navigator) {
         return;
       }
 
+      if (process.env.DERIV_WS_URL) {
+        send('setWebsocketUrl', process.env.DERIV_WS_URL);
+      }
+
       if (localStorage.getItem('access_token')) {
         send('ws', {
           "authorize": localStorage.getItem('access_token')
@@ -67,5 +71,9 @@ eventEmitter.subscribe = (message, callback) => {
 }
 
 eventEmitter.send = send;
+
+eventEmitter.setWebsocketUrl = (url) => {
+  send('setWebsocketUrl', url);
+}
 
 export default eventEmitter;

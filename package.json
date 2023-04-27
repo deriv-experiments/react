@@ -1,6 +1,11 @@
 {
   "name": "@deriv-experiments/react",
   "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "type": "module",
   "description": "A React library for integrating with Deriv's platform.",
   "main": "src/index.js",
@@ -11,6 +16,10 @@
   },
   "keywords": [
     "deriv"
+  ],
+  "files": [
+    "dist/worker.js",
+    "src"
   ],
   "author": {
     "email": "mark.wylde@deriv.com",
